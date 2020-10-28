@@ -11,7 +11,7 @@ export CC_CONSTRUCTOR='{"Args":["init","a","100","b","200"]}'
 export CC_NAME="nodecc"
 export CC_PATH="/var/hyperledger/nodechaincode/chaincode_example02"
 export CC_VERSION="1.0"
-export CC_CHANNEL_ID="airlinechannel"
+export CC_CHANNEL_ID="healthcare-channel"
 export CC_LANGUAGE="node"
 
 # Version 2.x

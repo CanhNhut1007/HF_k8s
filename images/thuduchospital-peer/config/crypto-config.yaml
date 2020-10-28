@@ -1,47 +1,29 @@
-# Defines four organizations
-#  - Orderer organization
-#  - Acme
-#  - Budget
-#  - Expo
-##### Orderer for acme
+##### Defines three organizations   ####
+
+##### Orderer for Healcare network ####
 OrdererOrgs:
   - Name: Orderer
-    Domain: acme.com
-    EnableNodeOUs: true
+    Domain: healthcare.tech
+    #EnableNodeOUs: true
     Specs:
       - Hostname: orderer
       
-#### Peers for acme
 PeerOrgs:
-  # Peer configuration for ACME
-  - Name: Acme
-    Domain: acme.com
-    EnableNodeOUs: true
+  #### Peers for Thu Duc Hospital
+  - Name: ThuDucHospital
+    Domain: thuduchospital.healthcare.tech
+    #EnableNodeOUs: true
     Specs:
-      - Hostname: peer1.acme.com
-        CommonName: peer1.acme.com
+      - Hostname: peer1.thuduchospital.healthcare.tech
+        CommonName: peer1.thuduchospital.healthcare.tech
     Users:
       Count: 1
-
-  # Peer configuration for Budget
-  - Name: Budget
-    Domain: budget.com
-    EnableNodeOUs: true
+  #### Peers for Go Vap Hospital
+  - Name: GoVapHospital
+    Domain: govaphospital.healthcare.tech
+    #EnableNodeOUs: true
     Specs:
-      - Hostname: peer1.budget.com
-        CommonName: peer1.budget.com
+      - Hostname: peer1.govaphospital.healthcare.tech
+        CommonName: peer1.govaphospital.healthcare.tech
     Users:
       Count: 1
-
-  # Peer configuration for Budget
-  - Name: Expo
-    Domain: expo.com
-    EnableNodeOUs: true
-    Specs:
-      - Hostname: peer1.expo.com
-        CommonName: peer1.expo.com
-    Users:
-      Count: 1
-
-
-      

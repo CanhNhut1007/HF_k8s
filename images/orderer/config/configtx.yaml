@@ -87,11 +87,11 @@ Organizations:
 #   ORDERER
 Orderer: &OrdererDefaults
 
-  OrdererType: etcdraft
+  OrdererType: solo
 
   Addresses:
     # UPDATE THE IP ADDRESS
-    - healthcare-orderer-clusterip:7050
+    - healthcare-orderer-clusterip:30750
   # Policies for Orderer
   Policies:
     Readers:
