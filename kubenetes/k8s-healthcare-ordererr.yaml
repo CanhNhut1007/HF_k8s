@@ -21,10 +21,10 @@ spec:
       - name: healthcare-orderer
 
         # Image used
-        image: nhutori4/orderer:dev
+        image: nhutori4/orderer:dev-1
 
         # Uncomment the following during development/testing of the image
-        # imagePullPolicy: Always
+        imagePullPolicy: Always
         env:
           # Points to the orderer.yaml
           - name: FABRIC_CFG_PATH

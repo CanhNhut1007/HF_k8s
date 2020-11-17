@@ -1,6 +1,6 @@
 #Docker file for setting up the acme peer
 # FROM hyperledger/fabric-peer:1.4.2
-FROM hyperledger/fabric-peer:2.1
+FROM hyperledger/fabric-peer:2.2.1
 
 LABEL  maintainer="Thach Canh Nhut"
 

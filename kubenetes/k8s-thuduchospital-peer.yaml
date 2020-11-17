@@ -16,24 +16,53 @@ spec:
       labels:
         app: thuduchospital-peer
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-master
+                operator: In
+                values:
+                - "1"
       containers:
       - name: thuduchospital-peer
         # Image used
-        image: nhutori4/thuduchospital-peer:dev
+        image: hyperledger/fabric-peer:2.2.1
         # Uncomment the following during development/testing of the image
-        # imagePullPolicy: Always
+        imagePullPolicy: Always
         env:
-          - name: FABRIC_CFG_PATH
-            value: /var/hyperledger/config
           - name: FABRIC_LOGGING_SPEC
             value: INFO
           - name: ORDERER_ADDRESS
-            value: healthcare-orderer-clusterip-clusterip:30750
+            value: healthcare-orderer-clusterip:30750
           - name: ORG_CONTEXT
             value: thuduchospital
           - name: CORE_PEER_ADDRESS
           # value: thuduchospital-peer-clusterip:30751
-            value: localhost:30751
+            value: thuduchospital-peer-clusterip:30751
+          - name: CORE_PEER_LOCALMSPID
+            value: msp
+          - name: CORE_PEER_MSPCONFIGPATH
+            value: /mnt/disks/org/ThuDucOrg/peer1/fabric-ca-client/msp
+          - name: FABRIC_LOGGING_SPEC
+            value: debug
+          - name: CORE_PEER_TLS_ENABLED
+            value: "true"
+          - name: CORE_PEER_TLS_CERT_FILE
+            value: /mnt/disks/org/ThuDucOrg/peer1/fabric-ca-client/tls-msp/signcerts/cert.pem
+          - name: CORE_PEER_TLS_KEY_FILE
+            value: /mnt/disks/org/ThuDucOrg/peer1/fabric-ca-client/tls-msp/keystore/key.pem
+          - name: CORE_PEER_TLS_ROOTCERT_FILE
+            value: /mnt/disks/org/ThuDucOrg/peer1/fabric-ca-client/tls-msp/tlscacerts/tls-10-102-10-236-7052.pem
+          - name: CORE_PEER_GOSSIP_USELEADERELECTION
+            value: "true"
+          - name: CORE_PEER_GOSSIP_ORGLEADER
+            value: "false"
+          - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
+            value: thuduchospital-peer-clusterip:30751
+          - name: CORE_PEER_GOSSIP_SKIPHANDSHAKE
+            value: "true"
           # Replacement for set-context in alpine
           # - name: MSP_ID
           #   value: AcmeMSP
@@ -44,9 +73,14 @@ spec:
         volumeMounts:
         - name: thuduchospital-peer-ledger
           mountPath: /var/ledger
+        - name: thuduchospital
+          mountPath: /mnt/disks/org/ThuDucOrg/peer1/fabric-ca-client/
         - name: dockersock
           mountPath: /var/run/docker.sock
       volumes:
+      - name: thuduchospital
+        hostPath:
+          path: /mnt/disks/org/ThuDucOrg/peer1/fabric-ca-client/
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock

@@ -1,6 +1,6 @@
 #Docker file for setting up the budget peer
 # FROM hyperledger/fabric-peer:1.4.2
-FROM hyperledger/fabric-peer:2.1
+FROM hyperledger/fabric-ca-peer:latest
 
 LABEL  maintainer="Thach Canh Nhut"
 
@@ -39,9 +39,9 @@ RUN  echo "cd /var/hyperledger/bins" >> /etc/profile
 RUN echo ". /var/hyperledger/bins/set-context.sh" >> /etc/profile
 
 #11. Install the jq package - used in scripts
-RUN apk update \
- && apk add jq \
- && rm -rf /var/cache/apk/*
+# RUN apk update \
+#  && apk add jq \
+#  && rm -rf /var/cache/apk/*
 
 #12. Create the package folder
 RUN mkdir -p /var/hyperledger/packages

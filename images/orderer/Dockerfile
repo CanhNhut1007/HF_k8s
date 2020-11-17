@@ -1,7 +1,7 @@
 # Updated to Fabric 2.x
 #1. Docker file for setting up the Orderer
 # FROM hyperledger/fabric-orderer:1.4.2
-FROM hyperledger/fabric-orderer:2.1
+FROM hyperledger/fabric-orderer:1.4.0
 
 LABEL  maintainer="Thach Canh Nhut"
 
@@ -17,7 +17,8 @@ COPY ./config/healthcare-genesis.block  /var/hyperledger/config/healthcare-genes
 #5. Copy the orderer YAML
 COPY ./config/orderer/orderer.yaml /var/hyperledger/config/orderer.yaml
 
-#6. Launch the Orderer
-CMD orderer
+COPY /bin/fabric-ca-client /usr/local/bin
+
+CMD ["orderer"]
 
 

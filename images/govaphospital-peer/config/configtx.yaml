@@ -16,7 +16,7 @@ Organizations:
   - &Orderer
     Name: Orderer
     ID: OrdererMSP
-    MSPDir: ./temp/orgs-msp/orderer/msp
+    MSPDir: ./temp/orgs-msp/orderer/msp  #=> thay the MSP /etc/hyperledger/fabric-ca-server of Orderer
     # Policies are mandatory starting 2.x
     Policies: &OrdererPolicies
       Readers:
@@ -33,7 +33,7 @@ Organizations:
           Type: Signature
           Rule: "OR('OrdererMSP.member')"
 
-  - &ThuDucHospital
+  - &ThuDucHospital   #=> thay the MSP /etc/hyperledger/fabric-ca-server of ThuDucHospital
     Name: ThuDucHospital
     ID: ThuDucHospitalMSP
     MSPDir: ./temp/orgs-msp/thuduchospital/msp
@@ -58,7 +58,7 @@ Organizations:
       - Host: thuduchospital-peer-clusterip
         Port: 30751
 
-  - &GoVapHospital
+  - &GoVapHospital #=> thay the MSP /etc/hyperledger/fabric-ca-server of GoVapHospital
     Name: GoVapHospital
     ID: GoVapHospitalMSP
     MSPDir: ./temp/orgs-msp/govaphospital/msp

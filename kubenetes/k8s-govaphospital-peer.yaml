@@ -19,9 +19,9 @@ spec:
       containers:
       - name: govaphospital-peer
         # image used
-        image: nhutori4/govaphospital-peer:dev
+        image: nhutori4/govaphospital-peer:dev-1
         # Uncomment the following during development/testing of the image
-        # imagePullPolicy: Always
+        imagePullPolicy: Always
         env:
           - name: FABRIC_CFG_PATH
             value: /var/hyperledger/config
@@ -30,7 +30,7 @@ spec:
           - name: ORDERER_ADDRESS
             value: healthcare-orderer-clusterip:30750
           - name: ORG_CONTEXT
-            value: budget
+            value: govaphospital
           - name: CORE_PEER_ADDRESS
           # value: govaphospital-peer-clusterip:30851
             value: localhost:30851
